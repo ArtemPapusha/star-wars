@@ -1,11 +1,13 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 
 import type { PaginationProps } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 
+import PeopleAPI from '@services/PeopleAPI';
 import { peopleSelectors, peopleActions } from '@store/people';
 
 const useContainer = () => {
+  const peopleApi = useMemo(() => new PeopleAPI(), []);
 
   const dispatch = useDispatch();
 
@@ -24,9 +26,26 @@ const useContainer = () => {
     dispatch(peopleActions.setCurrentPageAction(page));
   };
 
+  const fetchData = useCallback(
+    async (page: number | undefined) => {
+      dispatch(peopleActions.setPeopleLoaderAction(true));
+      try {
+        const responseData = await peopleApi.fetchPeopleData(page);
+
+        dispatch(peopleActions.setPeopleItemsAction(responseData.results));
+        dispatch(peopleActions.setPeopleCountAction(responseData.count));
+      } catch (error) {
+        console.log('Error fetching data:', error);
+      } finally {
+        dispatch(peopleActions.setPeopleLoaderAction(false));
+      }
+    },
+    [dispatch, peopleApi],
+  );
+
   useEffect(() => {
-    dispatch(peopleActions.fetchPeopleAction(currentPage));
-  }, [dispatch, currentPage]);
+    fetchData(currentPage);
+  }, [currentPage, dispatch, fetchData]);
 
   useEffect(refreshPagination, [dispatch]);
 

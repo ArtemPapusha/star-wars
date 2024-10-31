@@ -6,11 +6,8 @@ import type { StarshipType } from '@pages/StarshipList/types';
 import type { VehicleType } from '@pages/VehicleList/types';
 
 export interface PeopleDataType {
-  data: {
-    count: number | undefined;
-    results: PersonType[];
-  }
-
+  count: number | undefined;
+  results: PersonType[];
 }
 
 export interface PlanetsDataType {
@@ -34,4 +31,3 @@ export interface StarshipsDataType {
   count: number | undefined;
   results: StarshipType[];
 }
-

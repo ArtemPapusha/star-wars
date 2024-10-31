@@ -17,7 +17,7 @@ export const setPersonAction = (item: State['person']) => ({
 
 export const setPeopleLoaderAction = (loader: boolean) => ({
   type: PeopleActionTypes.SET_PEOPLE_LOADER,
-  payload: loader ,
+  payload: loader,
 });
 
 export const setCurrentPageAction = (page: State['currentPage']) => ({

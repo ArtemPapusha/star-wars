@@ -23,7 +23,7 @@ class PeopleAPI {
       return await response.json();
     } catch (error) {
       console.error('Error fetching people data: ', error);
-      throw error; //
+      throw error;
     }
   };
 

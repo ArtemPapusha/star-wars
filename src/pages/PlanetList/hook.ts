@@ -4,7 +4,7 @@ import type { PaginationProps } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 
 import PlanetsAPI from '@services/PlanetsAPI';
-import { planetsSelectors, palnetsActions } from '@store/planets';
+import { planetsSelectors, planetsActions } from '@store/planets';
 
 const useContainer = () => {
   const planetsApi = useMemo(() => new PlanetsAPI(), []);
@@ -18,27 +18,27 @@ const useContainer = () => {
 
   const refreshPagination = () => {
     return () => {
-      dispatch(palnetsActions.setCurrentPageAction(1));
+      dispatch(planetsActions.setCurrentPageAction(1));
     };
   };
 
   const onChange: PaginationProps['onChange'] = (page: number) => {
-    dispatch(palnetsActions.setCurrentPageAction(page));
+    dispatch(planetsActions.setCurrentPageAction(page));
   };
 
   const fetchData = useCallback(
     async (page: number | undefined) => {
-      dispatch(palnetsActions.setPlanetsLoader(true));
+      dispatch(planetsActions.setPlanetsLoader(true));
       try {
         const responseData = await planetsApi.fetchPlanetsData(page);
         console.log(responseData);
 
-        dispatch(palnetsActions.setPlanetsItems(responseData.results));
-        dispatch(palnetsActions.setPlanetsCount(responseData.count));
+        dispatch(planetsActions.setPlanetsItems(responseData.results));
+        dispatch(planetsActions.setPlanetsCount(responseData.count));
       } catch (error) {
         console.log('Error fetching data:', error);
       } finally {
-        dispatch(palnetsActions.setPlanetsLoader(false));
+        dispatch(planetsActions.setPlanetsLoader(false));
       }
     },
     [dispatch, planetsApi],

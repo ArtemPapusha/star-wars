@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useMatches } from 'react-router-dom';
 
 import PlanetsAPI from '@services/PlanetsAPI';
-import { planetsSelectors, palnetsActions } from '@store/planets';
+import { planetsSelectors, planetsActions } from '@store/planets';
 
 const useContainer = () => {
   const matches = useMatches();
@@ -18,15 +18,15 @@ const useContainer = () => {
 
   const fetchData = useCallback(
     async (id: string) => {
-      dispatch(palnetsActions.setPlanetsLoader(true));
+      dispatch(planetsActions.setPlanetsLoader(true));
       try {
         const responseData = await planetsApi.fetchPlanetsDataId(id);
 
-        dispatch(palnetsActions.setPlanet(responseData));
+        dispatch(planetsActions.setPlanet(responseData));
       } catch (error) {
         console.log('Error fetching data:', error);
       } finally {
-        dispatch(palnetsActions.setPlanetsLoader(false));
+        dispatch(planetsActions.setPlanetsLoader(false));
       }
     },
     [dispatch, planetsApi],
