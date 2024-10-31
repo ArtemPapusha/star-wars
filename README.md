@@ -1,30 +1,53 @@
-# React + TypeScript + Vite
+# Star Wars Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the **Star Wars Project**, a web application built with **React**, **TypeScript**, and **Vite**. This project utilizes **Ant Design** for the UI components and integrates with the **Star Wars API** to bring you an immersive experience into the Star Wars universe.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Responsive Design**: Enjoy a seamless experience across devices.
+- **Interactive UI**: Utilize Ant Design components for a modern user interface.
+- **Star Wars API Integration**: Fetch and display data from the Star Wars API, including characters, starships, planets, and more.
+- **TypeScript Support**: Strongly typed codebase for better development experience and fewer runtime errors.
 
-## Expanding the ESLint configuration
+## Technologies Used
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **React**: A JavaScript library for building user interfaces.
+- **TypeScript**: A superset of JavaScript that adds static types.
+- **Vite**: A build tool that provides a fast development environment.
+- **Ant Design**: A design system with a set of high-quality React components.
+- **Star Wars API**: A RESTful API for accessing Star Wars data.
 
-- Configure the top-level `parserOptions` property like this:
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v12 or above)
+- Yarn
+
+### Installation
+
+1. Clone the repository:
+
+   ```js
+   git clone https://github.com/yourusername/star-wars.git
+   ```
+
+2. Navigate to the project directory:
 
 ```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+cd star-wars
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+3. Install dependencies:
+
+```js
+yarn install
+```
+
+Running the Project
+To start the development server, run:
+```js
+yarn dev
+```
+
+Open your browser and navigate to http://localhost:5173 to see the application in action.
