@@ -28,9 +28,9 @@ Welcome to the **Star Wars Project**, a web application built with **React**, **
 
 1. Clone the repository:
 
-   ```js
-   git clone https://github.com/yourusername/star-wars.git
-   ```
+```js
+git clone https://github.com/yourusername/star-wars.git
+```
 
 2. Navigate to the project directory:
 
@@ -46,6 +46,7 @@ yarn install
 
 Running the Project
 To start the development server, run:
+
 ```js
 yarn dev
 ```
