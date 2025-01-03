@@ -21,9 +21,8 @@ const useContainer = () => {
       dispatch(filmsActions.setFilmsLoaderAction(true));
       try {
         const responseData = await filmsApi.fetchFilmsDataId(id);
-        console.log(responseData);
-
-        dispatch(filmsActions.setFilmAction(responseData));
+        
+        dispatch(filmsActions.setFilmAction(responseData.result));
       } catch (error) {
         console.log('Error fetching data:', error);
       } finally {
@@ -35,11 +34,11 @@ const useContainer = () => {
 
   useEffect(() => {
     fetchData(id);
-  }, [dispatch, fetchData, id, filmsApi]);
+  }, [dispatch, fetchData, id]);
 
   return {
     item,
-    loader
+    loader,
   };
 };
 

@@ -1,4 +1,5 @@
 import type { PersonType } from '@pages/PeopleList/types';
+import type { ResultDataType } from '@services/types';
 
 import type {
   setPeopleCountAction,
@@ -7,15 +8,15 @@ import type {
   setPersonAction,
   setCurrentPageAction,
   fetchPeopleAction,
-  fetchPeopleIdAction
+  fetchPeopleIdAction,
 } from './actions';
 
 export interface State {
   count: number | undefined;
-  items: PersonType[];
+  items: ResultDataType[];
   loader: boolean;
-  person: Omit<PersonType, 'url' | 'created' | 'edited'>;
-  currentPage: number | undefined
+  person: PersonType | null;
+  currentPage: number | undefined;
 }
 
 export type Action =

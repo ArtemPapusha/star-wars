@@ -34,7 +34,7 @@ const useContainer = () => {
         console.log(responseData);
 
         dispatch(planetsActions.setPlanetsItems(responseData.results));
-        dispatch(planetsActions.setPlanetsCount(responseData.count));
+        dispatch(planetsActions.setPlanetsCount(responseData.total_records));
       } catch (error) {
         console.log('Error fetching data:', error);
       } finally {

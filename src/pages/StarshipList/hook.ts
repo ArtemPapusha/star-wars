@@ -35,7 +35,7 @@ const useContainer = () => {
         dispatch(
           starshipsActions.setStarshipsItemsAction(responseData.results),
         );
-        dispatch(starshipsActions.setStarshipsCountAction(responseData.count));
+        dispatch(starshipsActions.setStarshipsCountAction(responseData.total_records));
       } catch (error) {
         console.log('Error fetching data:', error);
       } finally {

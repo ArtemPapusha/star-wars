@@ -1,39 +1,22 @@
-import { Card, Tag, Typography } from 'antd';
+import { Card } from 'antd';
 import { Link } from 'react-router-dom';
 
-import { LAYOUT, LAYOUT_ID } from '@constants/routes';
-import type { VehicleType } from '@pages/VehicleList/types';
-
+import { ROUTE_ID, ROUTES } from '@constants/routes';
 import '@assets/styles/components/card.scss';
+import type { ResultDataType } from '@services/types';
 
 const VehiclesDescription: React.FC<{
-  item: Omit<VehicleType, 'films' | 'pilots'>;
+  item: ResultDataType;
 }> = ({ item }) => {
-  const { Paragraph } = Typography;
-
-  const id = (item: VehicleType['url']) =>
-    item?.split('/')[item?.split('/').length - 2] || '';
-
   return (
     <Card
-      key={item.model}
-      title={item.model}
+      key={item.uid}
       extra={
-        <Link to={`${LAYOUT[LAYOUT_ID.VEHICLES].PATH}/${id(item.url)}`}>
-          More
-        </Link>
+        <Link to={`${ROUTES[ROUTE_ID.VEHICLES].PATH}/${item.uid}`}>More</Link>
       }
       className="card"
     >
-      <Paragraph>
-        Max atmosphering speed: <Tag> {item.max_atmosphering_speed}</Tag>
-      </Paragraph>
-      <Paragraph>
-        Passengers: <Tag> {item.passengers}</Tag>
-      </Paragraph>
-      <Paragraph>
-        Vehicle class: <Tag> {item.vehicle_class}</Tag>
-      </Paragraph>
+      {item.name}
     </Card>
   );
 };

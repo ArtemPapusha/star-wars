@@ -1,4 +1,4 @@
-import type { VehiclesDataType } from '@services/types';
+import type { DataType } from '@services/types';
 
 class VehiclesAPI {
   protected static instance: VehiclesAPI | null = null;
@@ -14,10 +14,10 @@ class VehiclesAPI {
 
   public fetchVehiclesData = async (
     page: number | undefined,
-  ): Promise<VehiclesDataType> => {
+  ): Promise<DataType> => {
     try {
       const response = await fetch(
-        `https://swapi.dev/api/vehicles/?page=${page}`,
+        `https://www.swapi.tech/api/vehicles?page=${page}&limit=10`,
       );
 
       return await response.json();
@@ -29,7 +29,7 @@ class VehiclesAPI {
 
   public fetchVehiclesDataId = async (id: string) => {
     try {
-      const response = await fetch(`https://swapi.dev/api/vehicles/${id}`);
+      const response = await fetch(`https://www.swapi.tech/api/vehicles/${id}`);
 
       return response.json();
     } catch (error) {

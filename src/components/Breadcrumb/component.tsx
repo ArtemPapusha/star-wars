@@ -4,9 +4,9 @@ import getItemRender from './getItemRender';
 import useContainer from './hook';
 
 const Breadcrumb: React.FC = () => {
-  const { routes } = useContainer();
+  const { routes, isHome } = useContainer();
 
-  if (routes.length <= 1) {
+  if (isHome) {
     return null;
   }
 

@@ -1,4 +1,4 @@
-import type { PlanetsDataType } from '@services/types';
+import type { DataType } from '@services/types';
 
 class PlanetsAPI {
   protected static instance: PlanetsAPI | null = null;
@@ -14,10 +14,10 @@ class PlanetsAPI {
 
   public fetchPlanetsData = async (
     page: number | undefined,
-  ): Promise<PlanetsDataType> => {
+  ): Promise<DataType> => {
     try {
       const response = await fetch(
-        `https://swapi.dev/api/planets/?page=${page}`,
+        `https://www.swapi.tech/api/planets?page=${page}&limit=10`,
       );
 
       return await response.json();
@@ -29,7 +29,7 @@ class PlanetsAPI {
 
   public fetchPlanetsDataId = async (id: string) => {
     try {
-      const response = await fetch(`https://swapi.dev/api/planets/${id}`);
+      const response = await fetch(`https://www.swapi.tech/api/planets/${id}`);
 
       return response.json();
     } catch (error) {

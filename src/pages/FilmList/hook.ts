@@ -7,7 +7,6 @@ import FilmsAPI from '@services/FilmsAPI';
 import { filmsSelectors, filmsActions } from '@store/films';
 
 const useContainer = () => {
-  
   const filmsApi = useMemo(() => new FilmsAPI(), []);
 
   const dispatch = useDispatch();
@@ -27,26 +26,23 @@ const useContainer = () => {
     dispatch(filmsActions.setCurrentPageAction(page));
   };
 
-  const fetchData = useCallback(
-    async (page: number | undefined) => {
-      dispatch(filmsActions.setFilmsLoaderAction(true));
-      try {
-        const responseData = await filmsApi.fetchFilmsData(page);
-        console.log(responseData);
+  const fetchData = useCallback(async () => {
+    dispatch(filmsActions.setFilmsLoaderAction(true));
+    try {
+      const responseData = await filmsApi.fetchFilmsData();
+      console.log(responseData);
 
-        dispatch(filmsActions.setFilmsItemsAction(responseData.results));
-        dispatch(filmsActions.setFilmsCountAction(responseData.count));
-      } catch (error) {
-        console.log('Error fetching data:', error);
-      } finally {
-        dispatch(filmsActions.setFilmsLoaderAction(false));
-      }
-    },
-    [dispatch, filmsApi],
-  );
+      dispatch(filmsActions.setFilmsItemsAction(responseData.result));
+      dispatch(filmsActions.setFilmsCountAction(responseData.result.length));
+    } catch (error) {
+      console.log('Error fetching data:', error);
+    } finally {
+      dispatch(filmsActions.setFilmsLoaderAction(false));
+    }
+  }, [dispatch, filmsApi]);
 
   useEffect(() => {
-    fetchData(currentPage);
+    fetchData();
   }, [currentPage, dispatch, fetchData, filmsApi]);
 
   useEffect(refreshPagination, [dispatch]);
@@ -56,7 +52,7 @@ const useContainer = () => {
     onChange,
     currentPage,
     totalItems,
-    loader
+    loader,
   };
 };
 

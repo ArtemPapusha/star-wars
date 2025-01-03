@@ -20,7 +20,7 @@ const PlanetList: React.FC = () => {
         <>
           <div className="description">
             {items.map((item) => (
-              <PlanetsDescription key={item.name} item={item} />
+              <PlanetsDescription key={item.uid} item={item} />
             ))}
           </div>
 

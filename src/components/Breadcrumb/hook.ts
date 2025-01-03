@@ -3,24 +3,36 @@ import { useMemo } from 'react';
 import type { ItemType } from 'antd/es/breadcrumb/Breadcrumb';
 import { useMatches } from 'react-router-dom';
 
-import { ROUTER_ID_INDEX_PAGE_POSTFIX } from '@constants/routes';
+import { ROUTE_ID, ROUTES } from '@constants/routes';
 
 const useContainer = () => {
   const matches = useMatches();
 
+  const isHome = matches?.at(-1)?.id === ROUTE_ID.HOME;
+
   const crumbs = useMemo(() => {
     const lastItem = matches?.at(-1)?.id;
-    const isIndex =
-      (lastItem?.split('_')?.at(-1) ?? '') === ROUTER_ID_INDEX_PAGE_POSTFIX;
+    const isDetails = (lastItem?.split('_')?.at(-1) ?? '') === 'DETAILS';
 
-    if (isIndex) {
+    if (isDetails) {
       const data = [...matches];
-      data.pop();
+
+      data.splice(1, 0, {
+        id: ROUTE_ID[
+          (lastItem?.split('_')?.at(-2) as keyof typeof ROUTE_ID) ?? ''
+        ],
+        pathname:
+          ROUTES[(lastItem?.split('_')?.at(-2) as keyof typeof ROUTE_ID) ?? '']
+            .PATH,
+        params: { id: undefined },
+        data: undefined,
+        handle: undefined,
+      });
+
       return data;
     }
     return matches;
   }, [matches]);
-
 
   const routes: ItemType[] = useMemo(
     () =>
@@ -32,9 +44,10 @@ const useContainer = () => {
       })),
     [crumbs],
   );
-  
+
   return {
     routes,
+    isHome,
   };
 };
 

@@ -31,10 +31,11 @@ const useContainer = () => {
       dispatch(speciesActions.setSpeciesLoaderAction(true));
       try {
         const responseData = await speciesApi.fetchSpeciesData(page);
-        console.log(responseData);
 
         dispatch(speciesActions.setSpeciesItemsAction(responseData.results));
-        dispatch(speciesActions.setSpeciesCountAction(responseData.count));
+        dispatch(
+          speciesActions.setSpeciesCountAction(responseData.total_records),
+        );
       } catch (error) {
         console.log('Error fetching data:', error);
       } finally {
@@ -55,7 +56,7 @@ const useContainer = () => {
     onChange,
     currentPage,
     totalItems,
-    loader
+    loader,
   };
 };
 

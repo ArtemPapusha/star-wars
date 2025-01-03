@@ -7,24 +7,14 @@ const initState = {
   count: 0,
   items: [],
   loader: false,
-  specie: {
-    name: '',
-    classification: '',
-    designation: '',
-    average_height: '',
-    skin_colors: '',
-    hair_colors: '',
-    eye_colors: '',
-    average_lifespan: '',
-    homeworld: '',
-    language: '',
-    people: [],
-    films: [],
-  },
-  currentPage: 1
+  specie: null,
+  currentPage: 1,
 };
 
-const speciesCountReducer = (state: State['count'] = initState.count, action: Action) => {
+const speciesCountReducer = (
+  state: State['count'] = initState.count,
+  action: Action,
+) => {
   switch (action.type) {
     case SpeciesActionTypes.SET_SPECIES_COUNT:
       return action.payload;
@@ -33,7 +23,10 @@ const speciesCountReducer = (state: State['count'] = initState.count, action: Ac
   }
 };
 
-const speciesItemsReducer = (state: State['items'] = initState.items, action: Action) => {
+const speciesItemsReducer = (
+  state: State['items'] = initState.items,
+  action: Action,
+) => {
   switch (action.type) {
     case SpeciesActionTypes.SET_SPECIES_ITEMS:
       return action.payload;
@@ -42,7 +35,10 @@ const speciesItemsReducer = (state: State['items'] = initState.items, action: Ac
   }
 };
 
-const specieReducer = (state: State['specie'] = initState.specie, action: Action) => {
+const specieReducer = (
+  state: State['specie'] = initState.specie,
+  action: Action,
+) => {
   switch (action.type) {
     case SpeciesActionTypes.SET_SPECIE:
       return action.payload;
@@ -51,7 +47,10 @@ const specieReducer = (state: State['specie'] = initState.specie, action: Action
   }
 };
 
-const speciesLoaderReducer = (state: State['loader'] = initState.loader, action: Action) => {
+const speciesLoaderReducer = (
+  state: State['loader'] = initState.loader,
+  action: Action,
+) => {
   switch (action.type) {
     case SpeciesActionTypes.SET_SPECIES_LOADER:
       return action.payload;
@@ -60,7 +59,10 @@ const speciesLoaderReducer = (state: State['loader'] = initState.loader, action:
   }
 };
 
-const currentPageReducer = (state: State['currentPage'] = initState.currentPage, action: Action) => {
+const currentPageReducer = (
+  state: State['currentPage'] = initState.currentPage,
+  action: Action,
+) => {
   switch (action.type) {
     case SpeciesActionTypes.SET_CURRENT_PAGE:
       return action.payload;
@@ -74,7 +76,7 @@ const speciesReducer = combineReducers({
   items: speciesItemsReducer,
   loader: speciesLoaderReducer,
   specie: specieReducer,
-  currentPage: currentPageReducer
+  currentPage: currentPageReducer,
 });
 
 export default speciesReducer;

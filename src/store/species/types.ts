@@ -1,4 +1,5 @@
 import type { SpecieType } from '@pages/SpecieList/types';
+import type { ResultDataType } from '@services/types';
 
 import type {
   setSpecieAction,
@@ -10,9 +11,9 @@ import type {
 
 export interface State {
   count: number | undefined;
-  items: SpecieType[];
+  items: ResultDataType[];
   loader: boolean;
-  specie: Omit<SpecieType, 'url' | 'created' | 'edited'>;
+  specie: SpecieType | null;
   currentPage: number | undefined
 }
 

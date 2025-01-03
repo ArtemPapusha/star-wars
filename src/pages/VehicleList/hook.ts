@@ -13,21 +13,20 @@ const useContainer = () => {
 
   const dispatch = useDispatch();
 
-  const items = useSelector(vehiclesSelectors.vehiclesItemsSelector); 
+  const items = useSelector(vehiclesSelectors.vehiclesItemsSelector);
   const currentPage = useSelector(vehiclesSelectors.currentPageSelector);
   const totalItems = useSelector(vehiclesSelectors.vehiclesCountSelector);
   const loader = useSelector(vehiclesSelectors.vehiclesLoaderSelector);
 
   const refreshPaginstion = () => {
     return () => {
-      dispatch(vehiclesActions.setCurrentPageAction(1))
-    }
-  }
-
-  const onChange: PaginationProps['onChange'] = (page: number) => {
-    dispatch(vehiclesActions.setCurrentPageAction(page))
+      dispatch(vehiclesActions.setCurrentPageAction(1));
+    };
   };
 
+  const onChange: PaginationProps['onChange'] = (page: number) => {
+    dispatch(vehiclesActions.setCurrentPageAction(page));
+  };
 
   const fetchData = useCallback(
     async (page: number | undefined) => {
@@ -37,7 +36,9 @@ const useContainer = () => {
         console.log(responseData);
 
         dispatch(vehiclesActions.setVehiclesItemsAction(responseData.results));
-        dispatch(vehiclesActions.setVehiclesCountAction(responseData.count));
+        dispatch(
+          vehiclesActions.setVehiclesCountAction(responseData.total_records),
+        );
       } catch (error) {
         console.log('Error fetching data:', error);
       } finally {
@@ -51,7 +52,7 @@ const useContainer = () => {
     fetchData(currentPage);
   }, [currentPage, dispatch, fetchData, vehiclesApi]);
 
-  useEffect(refreshPaginstion,[dispatch])
+  useEffect(refreshPaginstion, [dispatch]);
 
   return {
     matches,
@@ -59,7 +60,7 @@ const useContainer = () => {
     onChange,
     currentPage,
     totalItems,
-    loader
+    loader,
   };
 };
 

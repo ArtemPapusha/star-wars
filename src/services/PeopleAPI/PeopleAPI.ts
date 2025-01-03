@@ -1,4 +1,4 @@
-import type { PeopleDataType } from '@services/types';
+import type { DataType } from '@services/types';
 
 class PeopleAPI {
   protected static instance: PeopleAPI | null = null;
@@ -14,12 +14,11 @@ class PeopleAPI {
 
   public fetchPeopleData = async (
     page: number | undefined,
-  ): Promise<PeopleDataType> => {
+  ): Promise<DataType> => {
     try {
       const response = await fetch(
-        `https://swapi.dev/api/people/?page=${page}`,
+        `https://www.swapi.tech/api/people?page=${page}&limit=10`,
       );
-
       return await response.json();
     } catch (error) {
       console.error('Error fetching people data: ', error);
@@ -29,7 +28,7 @@ class PeopleAPI {
 
   public fetchPeopleDataId = async (id: string) => {
     try {
-      const response = await fetch(`https://swapi.dev/api/people/${id}`);
+      const response = await fetch(`https://www.swapi.tech/api/people/${id}`);
 
       return response.json();
     } catch (error) {

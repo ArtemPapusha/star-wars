@@ -1,0 +1,23 @@
+.categories-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  max-width: 1000px;
+}
+
+.card-wrapper{
+  margin: 15px;
+}
+
+.ant-card {
+  width: 300px;
+  &:hover {
+    box-shadow: -1px 6px 19px 0px rgba(220, 237, 54, 0.75);
+  }
+}
+
+.card-image {
+  height: 270px;
+  width: 100%;
+}

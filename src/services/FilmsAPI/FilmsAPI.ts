@@ -1,4 +1,4 @@
-import type { FilmsDataType } from '@services/types';
+import type { FilmDataType, ResultFilmType } from '@pages/FilmList/types';
 
 class FilmsAPI {
   protected static instance: FilmsAPI | null = null;
@@ -12,11 +12,9 @@ class FilmsAPI {
     return this;
   }
 
-  public fetchFilmsData = async (
-    page: number | undefined,
-  ): Promise<FilmsDataType> => {
+  public fetchFilmsData = async (): Promise<FilmDataType> => {
     try {
-      const response = await fetch(`https://swapi.dev/api/films/?page=${page}`);
+      const response = await fetch(`https://www.swapi.tech/api/films`);
 
       return await response.json();
     } catch (error) {
@@ -25,9 +23,11 @@ class FilmsAPI {
     }
   };
 
-  public fetchFilmsDataId = async (id: string) => {
+  public fetchFilmsDataId = async (
+    id: string,
+  ): Promise<{ message: string; result: ResultFilmType }> => {
     try {
-      const response = await fetch(`https://swapi.dev/api/films/${id}`);
+      const response = await fetch(`https://www.swapi.tech/api/films/${id}`);
 
       return response.json();
     } catch (error) {

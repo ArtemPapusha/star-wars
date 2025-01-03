@@ -7,19 +7,7 @@ const initState = {
   count: 0,
   items: [],
   loader: false,
-  film: {
-    title: '',
-    episode_id: 0,
-    opening_crawl: '',
-    director: '',
-    producer: '',
-    release_date: '',
-    characters: [],
-    planets: [],
-    starships: [],
-    vehicles: [],
-    species: [],
-  },
+  film: null,
   currentPage: 1
 };
 

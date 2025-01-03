@@ -1,36 +1,22 @@
-import { Card, Typography, Tag } from 'antd';
+import { Card } from 'antd';
 import { Link } from 'react-router-dom';
 
-import { LAYOUT, LAYOUT_ID } from '@constants/routes';
-import type { PlanetType } from '@pages/PlanetList/types';
-
+import { ROUTE_ID, ROUTES } from '@constants/routes';
 import '@assets/styles/components/card.scss';
+import type { ResultDataType } from '@services/types';
 
 const PlanetsDescription: React.FC<{
-  item: Omit<PlanetType, 'residents' | 'films'>;
+  item: ResultDataType;
 }> = ({ item }) => {
-  const { Paragraph } = Typography;
-
-  const id = (item: PlanetType['url']) =>
-    item?.split('/')[item?.split('/').length - 2] || '';
-
   return (
     <Card
-      key={item.name}
-      title={item.name}
+      key={item.uid}
       extra={
-        <Link to={`${LAYOUT[LAYOUT_ID.PLANETS].PATH}/${id(item.url)}`}>
-          More
-        </Link>
+        <Link to={`${ROUTES[ROUTE_ID.PLANETS].PATH}/${item.uid}`}>More</Link>
       }
       className="card"
     >
-      <Paragraph>
-        Climate: <Tag> {item.climate}</Tag>
-      </Paragraph>
-      <Paragraph>
-        Population: <Tag> {item.population}</Tag>
-      </Paragraph>
+      {item.name}
     </Card>
   );
 };

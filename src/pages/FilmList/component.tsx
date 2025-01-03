@@ -20,7 +20,7 @@ const FilmList: React.FC = () => {
         <>
           <div className="description">
             {items.map((item) => (
-              <FilmsDescription key={item.title} item={item} />
+              <FilmsDescription key={item.uid} item={item} />
             ))}
           </div>
           {totalItems !== undefined && totalItems > 10 && (

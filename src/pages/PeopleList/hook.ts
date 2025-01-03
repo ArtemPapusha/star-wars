@@ -33,7 +33,9 @@ const useContainer = () => {
         const responseData = await peopleApi.fetchPeopleData(page);
 
         dispatch(peopleActions.setPeopleItemsAction(responseData.results));
-        dispatch(peopleActions.setPeopleCountAction(responseData.count));
+        dispatch(
+          peopleActions.setPeopleCountAction(responseData.total_records),
+        );
       } catch (error) {
         console.log('Error fetching data:', error);
       } finally {

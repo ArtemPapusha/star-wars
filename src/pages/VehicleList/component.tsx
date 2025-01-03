@@ -20,7 +20,7 @@ const VehicleList: React.FC = () => {
         <>
           <div className="description">
             {items.map((item) => (
-              <VehiclesDescription key={item.model} item={item} />
+              <VehiclesDescription key={item.uid} item={item} />
             ))}
           </div>
           

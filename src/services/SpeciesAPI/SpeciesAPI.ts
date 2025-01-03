@@ -1,4 +1,4 @@
-import type { SpeciesDataType } from '@services/types';
+import type { DataType } from '@services/types';
 
 class SpeciesAPI {
   protected static instance: SpeciesAPI | null = null;
@@ -14,22 +14,22 @@ class SpeciesAPI {
 
   public fetchSpeciesData = async (
     page: number | undefined,
-  ): Promise<SpeciesDataType> => {
+  ): Promise<DataType> => {
     try {
       const response = await fetch(
-        `https://swapi.dev/api/species/?page=${page}`,
+        `https://www.swapi.tech/api/species?page=${page}&limit=10`,
       );
 
       return await response.json();
     } catch (error) {
       console.error('Error fetching species data: ', error);
-      throw error; //
+      throw error;
     }
   };
 
   public fetchSpeciesDataId = async (id: string) => {
     try {
-      const response = await fetch(`https://swapi.dev/api/species/${id}`);
+      const response = await fetch(`https://www.swapi.tech/api/species/${id}`);
 
       return response.json();
     } catch (error) {

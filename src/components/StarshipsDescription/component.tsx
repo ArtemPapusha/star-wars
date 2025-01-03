@@ -1,36 +1,22 @@
-import { Card, Tag, Typography } from 'antd';
+import { Card } from 'antd';
 import { Link } from 'react-router-dom';
 
-import { LAYOUT, LAYOUT_ID } from '@constants/routes';
-import type { StarshipType } from '@pages/StarshipList/types';
-
+import { ROUTE_ID, ROUTES } from '@constants/routes';
 import '@assets/styles/components/card.scss';
+import type { ResultDataType } from '@services/types';
 
 const StarshipsDescription: React.FC<{
-  item: Omit<StarshipType, 'films' | 'pilots'>;
+  item: ResultDataType;
 }> = ({ item }) => {
-  const { Paragraph } = Typography;
-
-  const id = (item: string) =>
-    item?.split('/')[item?.split('/').length - 2] || '';
-
   return (
     <Card
-      key={item.name}
-      title={item.name}
+      key={item.uid}
       extra={
-        <Link to={`${LAYOUT[LAYOUT_ID.STARSHIPS].PATH}/${id(item.url)}`}>
-          More
-        </Link>
+        <Link to={`${ROUTES[ROUTE_ID.STARSHIPS].PATH}/${item.uid}`}>More</Link>
       }
       className="card"
     >
-      <Paragraph>
-        Model: <Tag> {item.model}</Tag>
-      </Paragraph>
-      <Paragraph>
-        Starship class: <Tag> {item.starship_class}</Tag>
-      </Paragraph>
+      {item.name}
     </Card>
   );
 };

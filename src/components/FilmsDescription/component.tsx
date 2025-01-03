@@ -1,36 +1,30 @@
 import { Card, Tag, Typography } from 'antd';
 import { Link } from 'react-router-dom';
 
-import { LAYOUT, LAYOUT_ID } from '@constants/routes';
-import type { FilmType } from '@pages/FilmList/types';
+import { ROUTE_ID, ROUTES } from '@constants/routes';
+import type { ResultFilmType } from '@pages/FilmList/types';
 
 import '@assets/styles/components/card.scss';
 
 const FilmsDescription: React.FC<{
-  item: Omit<
-    FilmType,
-    'species' | 'vehicles' | 'starships' | 'planets' | 'characters'
-  >;
+  item: ResultFilmType;
 }> = ({ item }) => {
   const { Paragraph } = Typography;
 
-  const id = (item: FilmType['url']) =>
-    item?.split('/')[item?.split('/').length - 2] || '';
-
   return (
     <Card
-      key={item.title}
-      title={item.title}
+      key={item.uid}
+      title={item.properties.title}
       extra={
-        <Link to={`${LAYOUT[LAYOUT_ID.FILMS].PATH}/${id(item.url)}`}>More</Link>
+        <Link to={`${ROUTES[ROUTE_ID.FILMS].PATH}/${item.uid}`}>More</Link>
       }
       className="card"
     >
       <Paragraph>
-        Episode: <Tag> {item.episode_id}</Tag>
+        Episode: <Tag> {item.properties.episode_id}</Tag>
       </Paragraph>
       <Paragraph>
-        Release date: <Tag> {item.release_date}</Tag>
+        Release date: <Tag> {item.properties.release_date}</Tag>
       </Paragraph>
     </Card>
   );

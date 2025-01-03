@@ -1,19 +1,20 @@
 import type { PlanetType } from '@pages/PlanetList/types';
+import type { ResultDataType } from '@services/types';
 
 import type {
   setPlanetsCount,
   setPlanetsItems,
   setPlanetsLoader,
   setPlanet,
-  setCurrentPageAction
+  setCurrentPageAction,
 } from './actions';
 
 export interface State {
   count: number | undefined;
-  items: PlanetType[];
+  items: ResultDataType[];
   loader: boolean;
-  planet: Omit<PlanetType, 'url' | 'created' | 'edited'>;
-  currentPage: number | undefined
+  planet: PlanetType | null;
+  currentPage: number | undefined;
 }
 
 export type Action =

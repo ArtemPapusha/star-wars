@@ -19,7 +19,7 @@ const PeopleList: React.FC = () => {
         <>
           <div className="description">
             {items.map((item) => (
-              <PeopleDescription key={item.name} item={item} />
+              <PeopleDescription key={item.uid} item={item} />
             ))}
           </div>
 

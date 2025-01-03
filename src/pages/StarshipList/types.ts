@@ -1,18 +1,32 @@
 export interface StarshipType {
-  name: string;
-  model: string;
-  manufacturer: string;
-  cost_in_credits: string;
-  length: string;
-  max_atmosphering_speed: string;
-  crew: string;
-  passengers: string;
-  cargo_capacity: string;
-  consumables: string;
-  hyperdrive_rating: string;
-  MGLT: string;
-  starship_class: string;
-  pilots: string[];
-  films: string[];
-  url: string;
+  message: string
+  result: Result
+}
+
+export interface Result {
+  properties: Properties
+  description: string
+  _id: string
+  uid: string
+  __v: number
+}
+
+export interface Properties {
+  model: string
+  starship_class: string
+  manufacturer: string
+  cost_in_credits: string
+  length: string
+  crew: string
+  passengers: string
+  max_atmosphering_speed: string
+  hyperdrive_rating: string
+  MGLT: string
+  cargo_capacity: string
+  consumables: string
+  pilots: string[]
+  created: string
+  edited: string
+  name: string
+  url: string
 }

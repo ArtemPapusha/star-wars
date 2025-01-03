@@ -7,7 +7,9 @@ import useContainer from './hook';
 const Planet: React.FC = () => {
   const { item, loader } = useContainer();
 
-  return <>{loader ? <Spin size="large" /> : <PlanetDetails item={item} />}</>;
+  if (loader) return <Spin size="large" />;
+
+  return <PlanetDetails item={item} />;
 };
 
 export default Planet;

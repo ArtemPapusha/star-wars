@@ -2,95 +2,61 @@ import { LinkOutlined } from '@ant-design/icons';
 import { Descriptions, Tag } from 'antd';
 import { Link } from 'react-router-dom';
 
-import { LAYOUT, LAYOUT_ID } from '@constants/routes';
+import { ROUTE_ID, ROUTES } from '@constants/routes';
 import type { PersonType } from '@pages/PeopleList/types';
 
+import styles from './styles.module.scss';
 import '@assets/styles/components/category_link.scss';
 
 const PeopleDetails: React.FC<{
-  item: Omit<PersonType, 'url'>;
+  item: PersonType | null;
 }> = ({ item }) => {
-  const id = (item: PersonType['homeworld'] | string) =>
-    item?.split('/')[item?.split('/').length - 2] || '';
+  const id = (item: string) =>
+    item?.split('/')[item?.split('/').length - 1] || '';
+
+  if (!item) return null;
 
   return (
-    <div style={{ padding: 10 }}>
+    <div className={styles['detail_wrapper']}>
       <Descriptions
         contentStyle={{ maxWidth: 400 }}
-        title={item.name}
+        title={item.result.properties.name}
         style={{ margin: 10 }}
         bordered
+        column={1}
       >
-        <Descriptions.Item label="Height">{item.height}</Descriptions.Item>
+        <Descriptions.Item label="Height">
+          {item.result.properties.height}
+        </Descriptions.Item>
 
-        <Descriptions.Item label="Mass">{item.mass}</Descriptions.Item>
+        <Descriptions.Item label="Mass">
+          {item.result.properties.mass}
+        </Descriptions.Item>
 
         <Descriptions.Item label="Eye color">
-          {item.eye_color}
+          {item.result.properties.eye_color}
         </Descriptions.Item>
 
         <Descriptions.Item label="Skin color">
-          {item.skin_color}
+          {item.result.properties.skin_color}
         </Descriptions.Item>
 
         <Descriptions.Item label="Birth year">
-          {item.birth_year}
+          {item.result.properties.birth_year}
         </Descriptions.Item>
 
-        <Descriptions.Item label="Gender">{item.gender}</Descriptions.Item>
-        {item.homeworld?.length !== 0 && (
+        <Descriptions.Item label="Gender">
+          {item.result.properties.gender}
+        </Descriptions.Item>
+        {item.result.properties.homeworld?.length !== 0 && (
           <Descriptions.Item label="Homeworld">
             <Tag icon={<LinkOutlined />}>
               <Link
-                to={`${LAYOUT[LAYOUT_ID.PLANETS].PATH}/${id(item.homeworld)}`}
+                to={`${ROUTES[ROUTE_ID.PLANETS].PATH}/${id(item.result.properties.homeworld)}`}
               >
-                Planet {id(item.homeworld)}
+                Planet {id(item.result.properties.homeworld)}
               </Link>
             </Tag>
-          </Descriptions.Item>
-        )}
-        {item.films?.length !== 0 && (
-          <Descriptions.Item label="Films">
-            {item.films?.map((item) => (
-              <Tag key={item} icon={<LinkOutlined />} className="linkIcon">
-                <Link to={`${LAYOUT[LAYOUT_ID.FILMS].PATH}/${id(item)}`}>
-                  Film {id(item)}{' '}
-                </Link>
-              </Tag>
-            ))}
-          </Descriptions.Item>
-        )}
-        {item.species?.length !== 0 && (
-          <Descriptions.Item label="Species">
-            {item.species?.map((item) => (
-              <Tag key={item} icon={<LinkOutlined />} className="linkIcon">
-                <Link to={`${LAYOUT[LAYOUT_ID.SPECIES].PATH}/${id(item)}`}>
-                  Specie {id(item)}{' '}
-                </Link>
-              </Tag>
-            ))}
-          </Descriptions.Item>
-        )}
-        {item.vehicles?.length !== 0 && (
-          <Descriptions.Item label="Vehicles">
-            {item.vehicles?.map((item) => (
-              <Tag key={item} icon={<LinkOutlined />} className="linkIcon">
-                <Link to={`${LAYOUT[LAYOUT_ID.VEHICLES].PATH}/${id(item)}`}>
-                  Vehicle {id(item)}{' '}
-                </Link>
-              </Tag>
-            ))}
-          </Descriptions.Item>
-        )}
-        {item.starships?.length !== 0 && (
-          <Descriptions.Item label="Starships">
-            {item.starships?.map((item) => (
-              <Tag key={item} icon={<LinkOutlined />} className="linkIcon">
-                <Link to={`${LAYOUT[LAYOUT_ID.STARSHIPS].PATH}/${id(item)}`}>
-                  Starship {id(item)}{' '}
-                </Link>
-              </Tag>
-            ))}
           </Descriptions.Item>
         )}
       </Descriptions>

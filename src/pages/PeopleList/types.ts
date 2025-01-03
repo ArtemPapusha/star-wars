@@ -1,16 +1,27 @@
 export interface PersonType {
-  birth_year: string;
-  eye_color: string;
-  gender: string;
-  hair_color: string;
-  height: string;
-  homeworld?: string;
-  mass: string;
-  name: string;
-  skin_color: string;
-  species?: string[];
-  starships?: string[];
-  url?: string;
-  vehicles?: string[];
-  films?: string[];
+  message: string
+  result: Result
+}
+
+export interface Result {
+  properties: Properties
+  description: string
+  _id: string
+  uid: string
+  __v: number
+}
+
+export interface Properties {
+  height: string
+  mass: string
+  hair_color: string
+  skin_color: string
+  eye_color: string
+  birth_year: string
+  gender: string
+  created: string
+  edited: string
+  name: string
+  homeworld: string
+  url: string
 }

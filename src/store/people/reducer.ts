@@ -7,21 +7,7 @@ const initState = {
   count: 0,
   items: [],
   loader: false,
-  person: {
-    birth_year: '',
-    eye_color: '',
-    films: [],
-    gender: '',
-    hair_color: '',
-    height: '',
-    homeworld: '',
-    mass: '',
-    name: '',
-    skin_color: '',
-    species: [],
-    starships: [],
-    vehicles: [],
-  },
+  person: null,
   currentPage: 1
 };
 

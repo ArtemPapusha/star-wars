@@ -1,4 +1,4 @@
-import type { FilmType } from '@pages/FilmList/types';
+import type { ResultFilmType } from '@pages/FilmList/types';
 
 import type {
   setFilmAction,
@@ -10,9 +10,9 @@ import type {
 
 export interface State {
   count: number | undefined;
-  items: FilmType[];
+  items: ResultFilmType[];
   loader: boolean;
-  film: Omit<FilmType, 'url' | 'created' | 'edited'>;
+  film: ResultFilmType | null;
   currentPage: number | undefined
 }
 

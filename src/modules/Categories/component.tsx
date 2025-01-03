@@ -1,34 +1,46 @@
 import type React from 'react';
 
-import { Card } from 'antd';
+import { Card, Skeleton } from 'antd';
 import { Link } from 'react-router-dom';
 
-import { categoriesImg } from '@constants/images';
+import useContainer from './hook';
+import styles from './styles.module.scss';
 
 const Caregories: React.FC = () => {
-  const { Meta } = Card;
+  const { loadingStates, categoriesImg, handleImageLoad } = useContainer();
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-        alignItems: 'center',
-        maxWidth: 1000,
-      }}
-    >
-      {categoriesImg.map((item) => (
-        <Link style={{ margin: 15 }} key={item.id} to={item.path}>
+    <div className={styles['categories-wrapper']}>
+      {categoriesImg.map((item, index) => (
+        <Link className={styles['card-wrapper']} key={item.id} to={item.path}>
           <Card
             id={item.id}
             hoverable
-            style={{ width: 300 }}
+            className={styles['ant-card']}
             cover={
-              <img alt={item.name} src={item.imgUrl} style={{ height: 270 }} />
+              <>
+                {loadingStates[index] && (
+                  <Skeleton.Image
+                    active
+                    style={{
+                      width: '100%',
+                      height: 270,
+                    }}
+                  />
+                )}
+                <img
+                  alt={item.name}
+                  src={item.imgUrl}
+                  style={{
+                    display: loadingStates[index] ? 'none' : 'block',
+                  }}
+                  className={styles['card-image']}
+                  onLoad={() => handleImageLoad(index)}
+                />
+              </>
             }
           >
-            <Meta title={item.name} />
+            <Card.Meta title={item.name} />
           </Card>
         </Link>
       ))}

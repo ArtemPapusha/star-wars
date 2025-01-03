@@ -1,4 +1,5 @@
 import type { VehicleType } from "@pages/VehicleList/types";
+import type { ResultDataType } from "@services/types";
 
 import type {
   setVehicleAction,
@@ -10,9 +11,9 @@ import type {
 
 export interface State {
   count: number | undefined;
-  items: VehicleType[];
+  items: ResultDataType[];
   loader: boolean;
-  vehicle: Omit<VehicleType, 'url' | 'created' | 'edited'>;
+  vehicle: VehicleType | null;
   currentPage: number | undefined
 }
 

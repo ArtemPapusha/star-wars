@@ -1,19 +1,20 @@
-import type { StarshipType } from "@pages/StarshipList/types";
+import type { StarshipType } from '@pages/StarshipList/types';
+import type { ResultDataType } from '@services/types';
 
 import type {
   setStarshipAction,
   setStarshipsCountAction,
   setStarshipsItemsAction,
   setStarshipsLoaderAction,
-  setCurrentPageAction
+  setCurrentPageAction,
 } from './actions';
 
 export interface State {
   count: number | undefined;
-  items: StarshipType[];
+  items: ResultDataType[];
   loader: boolean;
-  starship: Omit<StarshipType, 'url' | 'created' | 'edited'>;
-  currentPage: number | undefined
+  starship: StarshipType | null;
+  currentPage: number | undefined;
 }
 
 export type Action =

@@ -1,39 +1,22 @@
-import { Card, Tag, Typography } from 'antd';
+import { Card } from 'antd';
 import { Link } from 'react-router-dom';
 
-import { LAYOUT, LAYOUT_ID } from '@constants/routes';
-import type { SpecieType } from '@pages/SpecieList/types';
-
+import { ROUTE_ID, ROUTES } from '@constants/routes';
 import '@assets/styles/components/card.scss';
+import type { ResultDataType } from '@services/types';
 
 const SpeciesDescription: React.FC<{
-  item: Omit<SpecieType, 'films' | 'people'>;
+  item: ResultDataType;
 }> = ({ item }) => {
-  const { Paragraph } = Typography;
-
-  const id = (item: SpecieType['url']) =>
-    item?.split('/')[item?.split('/').length - 2] || '';
-
   return (
     <Card
-      key={item.name}
-      title={item.name}
+      key={item.uid}
       extra={
-        <Link to={`${LAYOUT[LAYOUT_ID.SPECIES].PATH}/${id(item.url)}`}>
-          More
-        </Link>
+        <Link to={`${ROUTES[ROUTE_ID.SPECIES].PATH}/${item.uid}`}>More</Link>
       }
       className="card"
     >
-      <Paragraph>
-        Classification: <Tag> {item.classification}</Tag>
-      </Paragraph>
-      <Paragraph>
-        Designation: <Tag> {item.designation}</Tag>
-      </Paragraph>
-      <Paragraph>
-        Language: <Tag> {item.language}</Tag>
-      </Paragraph>
+      {item.name}
     </Card>
   );
 };
