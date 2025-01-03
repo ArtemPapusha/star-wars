@@ -44,8 +44,8 @@ const router = createBrowserRouter([
         element: <PlanetList />,
       },
       {
-        id: ROUTES[ROUTE_ID.PLANET_DETAILS].ID,
-        path: ROUTES[ROUTE_ID.PLANET_DETAILS].PATH,
+        id: ROUTES[ROUTE_ID.PLANETS_DETAIL].ID,
+        path: ROUTES[ROUTE_ID.PLANETS_DETAIL].PATH,
         element: <Planet />,
       },
       {
@@ -54,8 +54,8 @@ const router = createBrowserRouter([
         element: <FilmList />,
       },
       {
-        id: ROUTES[ROUTE_ID.FILM_DETAILS].ID,
-        path: ROUTES[ROUTE_ID.FILM_DETAILS].PATH,
+        id: ROUTES[ROUTE_ID.FILMS_DETAIL].ID,
+        path: ROUTES[ROUTE_ID.FILMS_DETAIL].PATH,
         element: <Film />,
       },
       {
@@ -64,8 +64,8 @@ const router = createBrowserRouter([
         element: <SpecieList />,
       },
       {
-        id: ROUTES[ROUTE_ID.SPECIE_DETAILS].ID,
-        path: ROUTES[ROUTE_ID.SPECIE_DETAILS].PATH,
+        id: ROUTES[ROUTE_ID.SPECIES_DETAIL].ID,
+        path: ROUTES[ROUTE_ID.SPECIES_DETAIL].PATH,
         element: <Specie />,
       },
       {
@@ -74,8 +74,8 @@ const router = createBrowserRouter([
         element: <VehicleList />,
       },
       {
-        id: ROUTES[ROUTE_ID.VEHICLE_DETAILS].ID,
-        path: ROUTES[ROUTE_ID.VEHICLE_DETAILS].PATH,
+        id: ROUTES[ROUTE_ID.VEHICLES_DETAIL].ID,
+        path: ROUTES[ROUTE_ID.VEHICLES_DETAIL].PATH,
         element: <Vehicle />,
       },
       {
@@ -84,8 +84,8 @@ const router = createBrowserRouter([
         element: <StarshipList />,
       },
       {
-        id: ROUTES[ROUTE_ID.STARSHIP_DETAILS].ID,
-        path: ROUTES[ROUTE_ID.STARSHIP_DETAILS].PATH,
+        id: ROUTES[ROUTE_ID.STARSHIPS_DETAIL].ID,
+        path: ROUTES[ROUTE_ID.STARSHIPS_DETAIL].PATH,
         element: <Starship />,
       },
     ],

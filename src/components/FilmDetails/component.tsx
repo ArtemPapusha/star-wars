@@ -1,6 +1,6 @@
 import { LinkOutlined } from '@ant-design/icons';
 import { Descriptions, Tag } from 'antd';
-import { Link } from 'react-router-dom';
+import { generatePath, Link } from 'react-router-dom';
 
 import { ROUTE_ID, ROUTES } from '@constants/routes';
 import type { ResultFilmType } from '@pages/FilmList/types';
@@ -43,7 +43,11 @@ const FilmDetails: React.FC<{
           <Descriptions.Item label="Characters">
             {item.properties.characters?.map((item) => (
               <Tag key={item} icon={<LinkOutlined />} className="linkIcon">
-                <Link to={`${ROUTES[ROUTE_ID.PEOPLE].PATH}/${id(item)}`}>
+                <Link
+                  to={generatePath(ROUTES[ROUTE_ID.PEOPLE_DETAILS].PATH, {
+                    id: id(item),
+                  })}
+                >
                   Person {id(item)}
                 </Link>
               </Tag>
@@ -54,7 +58,11 @@ const FilmDetails: React.FC<{
           <Descriptions.Item label="Planets">
             {item.properties.planets?.map((item) => (
               <Tag key={item} icon={<LinkOutlined />} className="linkIcon">
-                <Link to={`${ROUTES[ROUTE_ID.PLANETS].PATH}/${id(item)}`}>
+                <Link
+                  to={generatePath(ROUTES[ROUTE_ID.PLANETS_DETAIL].PATH, {
+                    id: id(item),
+                  })}
+                >
                   Planet {id(item)}
                 </Link>
               </Tag>
@@ -65,7 +73,11 @@ const FilmDetails: React.FC<{
           <Descriptions.Item label="Starships">
             {item.properties.starships?.map((item) => (
               <Tag key={item} icon={<LinkOutlined />} className="linkIcon">
-                <Link to={`${ROUTES[ROUTE_ID.STARSHIPS].PATH}/${id(item)}`}>
+                <Link
+                  to={generatePath(ROUTES[ROUTE_ID.STARSHIPS_DETAIL].PATH, {
+                    id: id(item),
+                  })}
+                >
                   Starship {id(item)}
                 </Link>
               </Tag>
@@ -76,7 +88,11 @@ const FilmDetails: React.FC<{
           <Descriptions.Item label="Vehicles">
             {item.properties.vehicles?.map((item) => (
               <Tag key={item} icon={<LinkOutlined />} className="linkIcon">
-                <Link to={`${ROUTES[ROUTE_ID.VEHICLES].PATH}/${id(item)}`}>
+                <Link
+                  to={generatePath(ROUTES[ROUTE_ID.VEHICLES_DETAIL].PATH, {
+                    id: id(item),
+                  })}
+                >
                   Vehicle {id(item)}
                 </Link>
               </Tag>
@@ -87,7 +103,11 @@ const FilmDetails: React.FC<{
           <Descriptions.Item label="Species">
             {item.properties.species?.map((item) => (
               <Tag key={item} icon={<LinkOutlined />} className="linkIcon">
-                <Link to={`${ROUTES[ROUTE_ID.SPECIES].PATH}/${id(item)}`}>
+                <Link
+                  to={generatePath(ROUTES[ROUTE_ID.SPECIES_DETAIL].PATH, {
+                    id: id(item),
+                  })}
+                >
                   Specie {id(item)}
                 </Link>
               </Tag>

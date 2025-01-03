@@ -12,17 +12,16 @@ const useContainer = () => {
 
   const crumbs = useMemo(() => {
     const lastItem = matches?.at(-1)?.id;
-    const isDetails = (lastItem?.split('_')?.at(-1) ?? '') === 'DETAILS';
+    const isDetails = (lastItem?.split('_')?.at(-1) ?? '') === 'DETAIL';
 
     if (isDetails) {
       const data = [...matches];
 
       data.splice(1, 0, {
-        id: ROUTE_ID[
-          (lastItem?.split('_')?.at(-2) as keyof typeof ROUTE_ID) ?? ''
-        ],
+        id: ROUTES[(lastItem?.split('_')?.at(-2) as keyof typeof ROUTES) ?? '']
+          .ID,
         pathname:
-          ROUTES[(lastItem?.split('_')?.at(-2) as keyof typeof ROUTE_ID) ?? '']
+          ROUTES[(lastItem?.split('_')?.at(-2) as keyof typeof ROUTES) ?? '']
             .PATH,
         params: { id: undefined },
         data: undefined,

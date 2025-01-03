@@ -1,6 +1,6 @@
 import { LinkOutlined } from '@ant-design/icons';
 import { Descriptions, Tag } from 'antd';
-import { Link } from 'react-router-dom';
+import { generatePath, Link } from 'react-router-dom';
 
 import { ROUTE_ID, ROUTES } from '@constants/routes';
 import type { SpecieType } from '@pages/SpecieList/types';
@@ -48,7 +48,9 @@ const SpecieDetails: React.FC<{
         <Descriptions.Item label="Homeworld">
           <Tag icon={<LinkOutlined />}>
             <Link
-              to={`${ROUTES[ROUTE_ID.PLANETS].PATH}/${id(item.result.properties.homeworld)}`}
+              to={generatePath(ROUTES[ROUTE_ID.PLANETS_DETAIL].PATH, {
+                id: id(item.result.properties.homeworld),
+              })}
             >
               Homeworld {id(item.result.properties.homeworld)}
             </Link>
@@ -60,7 +62,11 @@ const SpecieDetails: React.FC<{
         <Descriptions.Item label="People">
           {item.result.properties.people?.map((item) => (
             <Tag key={item} icon={<LinkOutlined />} className="linkIcon">
-              <Link to={`${ROUTES[ROUTE_ID.PEOPLE].PATH}/${id(item)}`}>
+              <Link
+                to={generatePath(ROUTES[ROUTE_ID.PEOPLE_DETAILS].PATH, {
+                  id: id(item),
+                })}
+              >
                 Person {id(item)}{' '}
               </Link>
             </Tag>

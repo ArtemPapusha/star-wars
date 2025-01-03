@@ -1,6 +1,6 @@
 import { LinkOutlined } from '@ant-design/icons';
 import { Descriptions, Tag } from 'antd';
-import { Link } from 'react-router-dom';
+import { generatePath, Link } from 'react-router-dom';
 
 import { ROUTE_ID, ROUTES } from '@constants/routes';
 import type { VehicleType } from '@pages/VehicleList/types';
@@ -56,7 +56,11 @@ const VehicleDetails: React.FC<{
           <Descriptions.Item label="Pilots">
             {item?.result.properties.pilots?.map((item) => (
               <Tag key={item} icon={<LinkOutlined />} className="linkIcon">
-                <Link to={`${ROUTES[ROUTE_ID.PEOPLE].PATH}/${id(item)}`}>
+                <Link
+                  to={generatePath(ROUTES[ROUTE_ID.PEOPLE_DETAILS].PATH, {
+                    id: id(item),
+                  })}
+                >
                   Pilot {id(item)}{' '}
                 </Link>
               </Tag>
@@ -67,7 +71,11 @@ const VehicleDetails: React.FC<{
           <Descriptions.Item label="Films">
             {item?.result.properties.films?.map((item) => (
               <Tag key={item} icon={<LinkOutlined />} className="linkIcon">
-                <Link to={`${ROUTES[ROUTE_ID.FILMS].PATH}/${id(item)}`}>
+                <Link
+                  to={generatePath(ROUTES[ROUTE_ID.FILMS_DETAIL].PATH, {
+                    id: id(item),
+                  })}
+                >
                   Film {id(item)}{' '}
                 </Link>
               </Tag>

@@ -1,6 +1,6 @@
 import { LinkOutlined } from '@ant-design/icons';
 import { Descriptions, Tag } from 'antd';
-import { Link } from 'react-router-dom';
+import { generatePath, Link } from 'react-router-dom';
 
 import { ROUTE_ID, ROUTES } from '@constants/routes';
 import type { PersonType } from '@pages/PeopleList/types';
@@ -52,7 +52,9 @@ const PeopleDetails: React.FC<{
           <Descriptions.Item label="Homeworld">
             <Tag icon={<LinkOutlined />}>
               <Link
-                to={`${ROUTES[ROUTE_ID.PLANETS].PATH}/${id(item.result.properties.homeworld)}`}
+                to={generatePath(ROUTES[ROUTE_ID.PLANETS_DETAIL].PATH, {
+                  id: id(item.result.properties.homeworld),
+                })}
               >
                 Planet {id(item.result.properties.homeworld)}
               </Link>
